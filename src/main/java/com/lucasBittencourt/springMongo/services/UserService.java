@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import com.lucasBittencourt.springMongo.domain.User;
+import com.lucasBittencourt.springMongo.dto.UserDTO;
 import com.lucasBittencourt.springMongo.repository.UserRepository;
 import com.lucasBittencourt.springMongo.services.exception.ObjectNotFoundExcption;
 
@@ -27,4 +28,12 @@ public class UserService {
 		Optional<User> obj = repo.findById(id);  
 		return obj.orElseThrow(() -> new ObjectNotFoundExcption("Objeto não encontrado"));
 	} 
+	
+	public User insert(User obj) {
+		return repo.insert(obj);
+	}
+	
+	public User fromDTO(UserDTO objDto) {
+		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
+	}
 }
