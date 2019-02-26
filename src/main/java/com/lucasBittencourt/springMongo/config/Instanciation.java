@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.lucasBittencourt.springMongo.domain.Post;
 import com.lucasBittencourt.springMongo.domain.User;
+import com.lucasBittencourt.springMongo.dto.AuthoDTO;
 import com.lucasBittencourt.springMongo.repository.PostRepository;
 import com.lucasBittencourt.springMongo.repository.UserRepository;
 
@@ -35,10 +36,12 @@ public class Instanciation implements CommandLineRunner{
 		User alex = new User(null, "Alex Green", "alex@gmail.com"); 
 		User bob = new User(null, "Bob Grey", "bob@gmail.com"); 
 		
-		Post post1 = new Post(null, sdf.parse("21/01/2019"), "Partiu", "Viajarrrrrrrrrrr", maria);
-		Post post2 = new Post(null, sdf.parse("22/01/2019"), "Partiu 2 ", "Viajarrrrrrrrrrr 2", maria);
+		userRepository.saveAll(Arrays.asList(maria, alex, bob));
 		
-		userRepository.saveAll(Arrays.asList(maria, alex, bob)); 
+		Post post1 = new Post(null, sdf.parse("21/01/2019"), "Partiu", "Viajarrrrrrrrrrr", new AuthoDTO(maria));
+		Post post2 = new Post(null, sdf.parse("22/01/2019"), "Partiu 2 ", "Viajarrrrrrrrrrr 2", new AuthoDTO(maria));
+		
+		 
 		postRepository.saveAll(Arrays.asList(post1, post2)); 
 	}
 
