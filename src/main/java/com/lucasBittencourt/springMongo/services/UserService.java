@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.lucasBittencourt.springMongo.domain.User;
 import com.lucasBittencourt.springMongo.repository.UserRepository;
+import com.lucasBittencourt.springMongo.services.exception.ObjectNotFoundExcption;
+
+import java.util.Optional;
 
 @Service
 @ComponentScan(basePackages = "com.lucasBittencourt.springMongo")
@@ -20,4 +23,8 @@ public class UserService {
 		return repo.findAll();
 	}
 	
+	public User findById(String id) {  
+		Optional<User> obj = repo.findById(id);  
+		return obj.orElseThrow(() -> new ObjectNotFoundExcption("Objeto não encontrado"));
+	} 
 }
