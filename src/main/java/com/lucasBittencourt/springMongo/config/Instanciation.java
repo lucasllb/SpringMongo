@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.lucasBittencourt.springMongo.domain.Post;
 import com.lucasBittencourt.springMongo.domain.User;
 import com.lucasBittencourt.springMongo.dto.AuthoDTO;
+import com.lucasBittencourt.springMongo.dto.CommetDTO;
 import com.lucasBittencourt.springMongo.repository.PostRepository;
 import com.lucasBittencourt.springMongo.repository.UserRepository;
 
@@ -40,6 +41,12 @@ public class Instanciation implements CommandLineRunner{
 		
 		Post post1 = new Post(null, sdf.parse("21/01/2019"), "Partiu", "Viajarrrrrrrrrrr", new AuthoDTO(maria));
 		Post post2 = new Post(null, sdf.parse("22/01/2019"), "Partiu 2 ", "Viajarrrrrrrrrrr 2", new AuthoDTO(maria));
+		
+		CommetDTO c1 = new CommetDTO("ohh", sdf.parse("21/01/2019"), new AuthoDTO(alex));
+		CommetDTO c2 = new CommetDTO("ehh", sdf.parse("21/01/2019"), new AuthoDTO(bob));
+		
+		post1.getComments().addAll(Arrays.asList(c1));
+		post2.getComments().addAll(Arrays.asList(c2));
 		 
 		postRepository.saveAll(Arrays.asList(post1, post2)); 
 		

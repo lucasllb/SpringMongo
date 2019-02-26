@@ -1,12 +1,15 @@
 package com.lucasBittencourt.springMongo.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.lucasBittencourt.springMongo.dto.AuthoDTO;
+import com.lucasBittencourt.springMongo.dto.CommetDTO;
 @Document
 public class Post implements Serializable {
 
@@ -17,6 +20,8 @@ public class Post implements Serializable {
 	private String title;
 	private String body;
 	private AuthoDTO Author;
+	
+	private List<CommetDTO> comments = new ArrayList<>();
 	
 	public Post() {
 		// TODO Auto-generated constructor stub
@@ -70,6 +75,14 @@ public class Post implements Serializable {
 	public void setAuthor(AuthoDTO author) {
 		Author = author;
 	}
+	
+	public List<CommetDTO> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommetDTO> comments) {
+		this.comments = comments;
+	}
 
 	@Override
 	public int hashCode() {
@@ -95,8 +108,5 @@ public class Post implements Serializable {
 			return false;
 		return true;
 	}
-
-	
-	
 	
 }
